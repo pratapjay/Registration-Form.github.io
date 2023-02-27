@@ -16,8 +16,13 @@
         <label for="new-password">Create a New Password: <input id="new-password" name="new-password" type="password" pattern="[a-z0-9]{8,}" required />Note*: [(a-z,0-9) (total character-8)]</label>
       </fieldset>
       <fieldset>
-        <label for="personal-account"><input id="personal-account" type="radio" name="account-type" class="inline" /> Personal Account</label>
-        <label for="business-account"><input id="business-account" type="radio" name="account-type" class="inline" /> Business Account</label>
+<label for="account">which type of account.you want to open?
+          <select id="account" name="account">
+            <option value="">(select one)</option>
+            <option value="Personal Account">Personal Account</option>
+            <option value="Business Account">Business Account</option>
+          </select>
+        </label>
         <label for="terms-and-conditions">
           <input id="terms-and-conditions" type="checkbox" required name="terms-and-conditions" class="inline" /> I accept the <a href="https://www.freecodecamp.org/news/terms-of-service/">terms and conditions</a>
         </label>
