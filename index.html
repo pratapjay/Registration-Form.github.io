@@ -8,7 +8,7 @@
   <body>
     <h1>Registration Form</h1>
     <p>Please fill out this form with the required information</p>
-    <form method="POST" action="https://docs.google.com/spreadsheets/d/1Kvou_P_yTjsO7AA2FdxLTgMDG7u_u3-N62hxLJ9CSds/edit?gid=0#gid=0" id="sheetdb-form">
+    <form method="post" id="google-form">
       <fieldset>
         <label for="first-name">Enter Your First Name: <input id="first-name" name="first-name" type="text" required /></label>
         <label for="last-name">Enter Your Last Name: <input id="last-name" name="last-name" type="text" required /></label>
@@ -47,21 +47,30 @@
     </form>
 
     <script>
-      var form = document.getElementById('sheetdb-form');
-  form.addEventListener("submit", e => {
-    e.preventDefault();
-    fetch(form.action, {
-        method : "POST",
-        body: new FormData(document.getElementById("sheetdb-form")),
-    }).then(
-        response => response.json()
-    ).then((html) => {
-      // you can put any JS code here
-      window.open('page2.html', '_blank');
+      // Get Form by its id
+      const form = document.getElementById("google-form");
 
-    });
-  });
-  </script>
+      // App Script url
+      const googleAppScriptUrl = "https://docs.google.com/spreadsheets/d/1Kvou_P_yTjsO7AA2FdxLTgMDG7u_u3-N62hxLJ9CSds/edit?gid=0#gid=0";
+      // Fuction to send data to google form when submit button is clicked
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        try {
+          fetch(googleAppScriptUrl, {
+            method: "POST",
+            mode: "no-cors",
+            body: new FormData(form),
+          }).then(() => {
+            // Do someting After successfull submission
+            console.log("success");
+            alert("Successfully Submitted");
+          });
+        } catch (error) {
+          // Do something for the error case
+          console.log(error);
+        }
+      });
+    </script>
 
 
 
